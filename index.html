@@ -95,7 +95,7 @@
 
 <section>
   <div class="card">
-    <p id="walletMessage">Wallet not connected</p>
+    <p id="walletMessage" data-i18n="wallet_not_connected">Wallet not connected</p>
     <p id="walletBalances"></p>
   </div>
 </section>
@@ -162,27 +162,42 @@ const RPC = "https://api.mainnet-beta.solana.com";
 
 function shorten(a){ return a.slice(0,4)+"..."+a.slice(-4); }
 
+function getCurrentLang(){ return localStorage.getItem("lang")||"en"; }
+
 async function connectWallet(){
   if(!window.solana || !window.solana.isPhantom){
-    alert("Please install Phantom Wallet");
-    window.open("https://phantom.app","_blank");
+    const lang = getCurrentLang();
+    alert(translations[lang].install_wallet);
+    window.open("https://phantom.app","_blank","noopener,noreferrer");
     return;
   }
   const r = await window.solana.connect();
   walletPublicKey = r.publicKey.toString();
-  document.getElementById("walletMessage").innerText =
-    "Connected: " + shorten(walletPublicKey);
+  const lang = getCurrentLang();
+  document.getElementById("walletMessage").textContent =
+    translations[lang].wallet_connected + shorten(walletPublicKey);
   loadBalances();
 }
 
 async function loadBalances(){
-  const sol = await fetch(RPC,{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({jsonrpc:"2.0",id:1,method:"getBalance",params:[walletPublicKey]})
-  }).then(r=>r.json());
-  const solBal = (sol.result.value/1e9).toFixed(4);
-
-  document.getElementById("walletBalances").textContent =
-    "SOL Balance: " + solBal;
+  try {
+    const response = await fetch(RPC,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({jsonrpc:"2.0",id:1,method:"getBalance",params:[walletPublicKey]})
+    });
+    const sol = await response.json();
+    if(sol.error || !sol.result){
+      throw new Error(sol.error ? sol.error.message : "Invalid response");
+    }
+    const solBal = (sol.result.value/1e9).toFixed(4);
+    const lang = getCurrentLang();
+    document.getElementById("walletBalances").textContent =
+      translations[lang].sol_balance + solBal;
+  } catch(err) {
+    console.error("Failed to load balance:", err);
+    const lang = getCurrentLang();
+    document.getElementById("walletBalances").textContent =
+      translations[lang].balance_error;
+  }
 }
 
 /* ---------- LANGUAGE ---------- */
@@ -200,7 +215,12 @@ const translations = {
     whitepaper_title:"Whitepaper",
     whitepaper_text:"Learn more about SHWE-PAY vision, technology, and use cases.",
     download_wp:"Download Whitepaper",
-    disclaimer:"SHWE-PAY is a decentralized digital asset and not an investment product. Cryptocurrency involves risk."
+    disclaimer:"SHWE-PAY is a decentralized digital asset and not an investment product. Cryptocurrency involves risk.",
+    wallet_not_connected:"Wallet not connected",
+    wallet_connected:"Connected: ",
+    install_wallet:"Please install Phantom Wallet",
+    sol_balance:"SOL Balance: ",
+    balance_error:"Failed to load balance"
   },
   my:{
     title:"SHWE-PAY",
@@ -215,7 +235,12 @@ const translations = {
     whitepaper_title:"Whitepaper",
     whitepaper_text:"SHWE-PAY ၏ ရည်ရွယ်ချက်နှင့် နည်းပညာများကို ဖတ်ရှုနိုင်ပါသည်။",
     download_wp:"Whitepaper ဒေါင်းလုဒ်",
-    disclaimer:"SHWE-PAY သည် ရင်းနှီးမြှုပ်နှံမှု မဟုတ်ပါ။ Cryptocurrency သည် အန္တရာယ်ရှိပါသည်။"
+    disclaimer:"SHWE-PAY သည် ရင်းနှီးမြှုပ်နှံမှု မဟုတ်ပါ။ Cryptocurrency သည် အန္တရာယ်ရှိပါသည်။",
+    wallet_not_connected:"Wallet ချိတ်ဆက်မထားပါ",
+    wallet_connected:"ချိတ်ဆက်ပြီး: ",
+    install_wallet:"Phantom Wallet ထည့်သွင်းပါ",
+    sol_balance:"SOL လက်ကျန်: ",
+    balance_error:"လက်ကျန်ရယူ၍မရပါ"
   }
 };
 
