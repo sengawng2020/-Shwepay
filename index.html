@@ -279,6 +279,94 @@
             font-size: 18px;
         }
 
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 400px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .notification.success {
+            border-left: 4px solid var(--primary);
+        }
+
+        .notification.error {
+            border-left: 4px solid #ff4444;
+        }
+
+        .notification.info {
+            border-left: 4px solid #4da6ff;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-icon {
+            font-size: 24px;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
         /* Disclaimer */
         .disclaimer {
             background: rgba(255, 193, 7, 0.1);
@@ -480,6 +568,44 @@
     </footer>
 
     <script>
+        // Notification System
+        function showNotification(type, title, message, duration = 5000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            const icons = {
+                success: '✓',
+                error: '✕',
+                info: 'ℹ'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon">${icons[type] || 'ℹ'}</div>
+                    <div class="notification-text">
+                        <div class="notification-title">${title}</div>
+                        <div class="notification-message">${message}</div>
+                    </div>
+                    <button class="notification-close">×</button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.addEventListener('click', () => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+        }
+
         // Language Switcher
         const langSwitcher = document.getElementById('langSwitcher');
         const translatableElements = document.querySelectorAll('[data-en]');
@@ -521,7 +647,15 @@
                 const isPhantomInstalled = window.solana && window.solana.isPhantom;
                 
                 if (!isPhantomInstalled) {
-                    alert('Please install Phantom wallet from https://phantom.app');
+                    const currentLang = langSwitcher.value;
+                    showNotification(
+                        'info',
+                        currentLang === 'en' ? 'Phantom Required' : 'Phantom လိုအပ်သည်',
+                        currentLang === 'en' 
+                            ? 'Please install Phantom wallet to connect. Click OK to visit phantom.app'
+                            : 'ချိတ်ဆက်ရန် Phantom ပိုက်ဆံအိတ်ကိုထည့်သွင်းပါ။ phantom.app သို့သွားရန် OK နှိပ်ပါ',
+                        7000
+                    );
                     window.open('https://phantom.app/', '_blank');
                     return;
                 }
@@ -541,25 +675,64 @@
                 connectWalletBtn.style.background = 'var(--gradient)';
                 connectWalletBtn.style.color = 'var(--dark-bg)';
                 
+                // Show success notification
+                showNotification(
+                    'success',
+                    currentLang === 'en' ? 'Wallet Connected' : 'ပိုက်ဆံအိတ်ချိတ်ဆက်ပြီး',
+                    currentLang === 'en' 
+                        ? `Connected to ${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`
+                        : `${pubKey.slice(0, 4)}...${pubKey.slice(-4)} သို့ချိတ်ဆက်ပြီး`,
+                    3000
+                );
+                
                 // Get SOL balance
                 await updateBalance(resp.publicKey);
                 
             } catch (err) {
                 console.error('Error connecting to wallet:', err);
-                alert('Failed to connect wallet. Please try again.');
+                const currentLang = langSwitcher.value;
+                showNotification(
+                    'error',
+                    currentLang === 'en' ? 'Connection Failed' : 'ချိတ်ဆက်မှုမအောင်မြင်ပါ',
+                    currentLang === 'en' 
+                        ? 'Failed to connect wallet. Please try again.'
+                        : 'ပိုက်ဆံအိတ်ချိတ်ဆက်မှု မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပါ။',
+                    5000
+                );
             }
         }
 
         async function updateBalance(publicKey) {
             try {
-                // Connect to Solana mainnet
-                const connection = new solanaWeb3.Connection('https://api.mainnet-beta.solana.com');
+                // Multiple RPC endpoints for better reliability
+                const rpcEndpoints = [
+                    'https://api.mainnet-beta.solana.com',
+                    'https://solana-api.projectserum.com',
+                    'https://rpc.ankr.com/solana'
+                ];
                 
-                // Get balance in lamports and convert to SOL
-                const balance = await connection.getBalance(publicKey);
-                const solBalance = (balance / 1e9).toFixed(4);
+                let balance = null;
+                let lastError = null;
                 
-                balanceDisplay.textContent = `${solBalance} SOL`;
+                // Try each endpoint until one succeeds
+                for (const endpoint of rpcEndpoints) {
+                    try {
+                        const connection = new solanaWeb3.Connection(endpoint);
+                        balance = await connection.getBalance(publicKey);
+                        break; // Success, exit loop
+                    } catch (err) {
+                        lastError = err;
+                        console.warn(`Failed to fetch balance from ${endpoint}:`, err);
+                        continue; // Try next endpoint
+                    }
+                }
+                
+                if (balance !== null) {
+                    const solBalance = (balance / 1e9).toFixed(4);
+                    balanceDisplay.textContent = `${solBalance} SOL`;
+                } else {
+                    throw lastError || new Error('All RPC endpoints failed');
+                }
             } catch (err) {
                 console.error('Error fetching balance:', err);
                 balanceDisplay.textContent = 'Balance unavailable';
@@ -686,7 +859,7 @@ For more information, visit our website or join our community.
         });
     </script>
 
-    <!-- Solana Web3.js -->
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <!-- Solana Web3.js - Pinned to specific version for stability -->
+    <script src="https://unpkg.com/@solana/web3.js@1.87.6/lib/index.iife.min.js"></script>
 </body>
 </html>
