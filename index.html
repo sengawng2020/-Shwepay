@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SHWE-PAY - Professional Solana SPL Payment Token. Connect your wallet, buy tokens, and join the future of payments.">
+    <meta name="keywords" content="SHWE-PAY, Solana, SPL Token, Crypto, Payment, Blockchain">
+    <title>SHWE-PAY | Solana SPL Payment Token</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #14F195;
+            --secondary: #9945FF;
+            --dark-bg: #0a0a0f;
+            --card-bg: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c0;
+            --gradient: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--dark-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(20, 241, 149, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark-bg);
+        }
+
+        .lang-switcher {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(153, 69, 255, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wallet-info {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .balance-display {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .wallet-address {
+            font-size: 14px;
+            color: var(--text-secondary);
+            word-break: break-all;
+            margin-top: 10px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 50px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Tokenomics */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .token-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .token-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .token-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .token-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* How to Buy */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            color: var(--dark-bg);
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .step p {
+            color: var(--text-secondary);
+        }
+
+        /* Whitepaper */
+        .whitepaper-section {
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whitepaper-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .whitepaper-section p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 400px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .notification.success {
+            border-left: 4px solid var(--primary);
+        }
+
+        .notification.error {
+            border-left: 4px solid #ff4444;
+        }
+
+        .notification.info {
+            border-left: 4px solid #4da6ff;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-icon {
+            font-size: 24px;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .disclaimer h3 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .disclaimer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tokenomics-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SHWE-PAY</div>
+            <div class="nav-buttons">
+                <select class="lang-switcher" id="langSwitcher">
+                    <option value="en">English</option>
+                    <option value="my">မြန်မာ</option>
+                </select>
+                <button class="btn btn-secondary" id="connectWallet">
+                    <span class="wallet-text" data-en="Connect Wallet" data-my="ပိုက်ဆံအိတ်ချိတ်မည်">Connect Wallet</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 data-en="Welcome to SHWE-PAY" data-my="SHWE-PAY မှကြိုဆိုပါသည်">Welcome to SHWE-PAY</h1>
+                <p data-en="The Future of Solana SPL Payment Tokens" data-my="Solana SPL ငွေပေးချေမှုတိုကင်များ၏ အနာဂတ်">The Future of Solana SPL Payment Tokens</p>
+                
+                <div class="wallet-info" id="walletInfo" style="display: none;">
+                    <h3 data-en="Wallet Connected" data-my="ပိုက်ဆံအိတ်ချိတ်ဆက်ပြီးပါပြီ">Wallet Connected</h3>
+                    <div class="balance-display" id="balanceDisplay">0 SOL</div>
+                    <div class="wallet-address" id="walletAddress"></div>
+                </div>
+
+                <!-- Note: Replace 'SHWE' with actual token mint address after deployment -->
+                <a href="https://jup.ag/swap/SOL-SHWE" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: 20px;">
+                    <span data-en="Buy on Jupiter" data-my="Jupiter တွင်ဝယ်ရန်">Buy on Jupiter</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Tokenomics Section -->
+        <section id="tokenomics">
+            <div class="container">
+                <h2 class="section-title" data-en="Tokenomics" data-my="တိုကင်စီးပွားရေး">Tokenomics</h2>
+                <div class="tokenomics-grid">
+                    <div class="token-card">
+                        <h3 data-en="Total Supply" data-my="စုစုပေါင်းထောက်ပံ့မှု">Total Supply</h3>
+                        <p>1,000,000,000 SHWE</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-en="Blockchain" data-my="ဘလော့ချိန်း">Blockchain</h3>
+                        <p>Solana (SPL Token)</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-en="Liquidity" data-my="ငွေလည်ပတ်မှု">Liquidity</h3>
+                        <p data-en="Locked & Secured" data-my="သော့ခတ်ပြီးလုံခြုံသည်">Locked & Secured</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-en="Distribution" data-my="ဖြန့်ဖြူးမှု">Distribution</h3>
+                        <p data-en="Fair Launch" data-my="တရားမျှတစတင်ခြင်း">Fair Launch</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Buy Section -->
+        <section id="howToBuy">
+            <div class="container">
+                <h2 class="section-title" data-en="How to Buy" data-my="ဝယ်ယူနည်း">How to Buy</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 data-en="Get a Wallet" data-my="ပိုက်ဆံအိတ်ရယူပါ">Get a Wallet</h3>
+                        <p data-en="Download Phantom wallet from phantom.app and set up your account securely." data-my="phantom.app မှ Phantom ပိုက်ဆံအိတ်ကိုဒေါင်းလုဒ်လုပ်ပြီး သင့်အကောင့်ကို လုံခြုံစွာတည်ဆောက်ပါ။">Download Phantom wallet from phantom.app and set up your account securely.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 data-en="Add SOL" data-my="SOL ထည့်ပါ">Add SOL</h3>
+                        <p data-en="Purchase SOL from an exchange and transfer it to your Phantom wallet." data-my="ငွေလဲလှယ်ရေးမှ SOL ဝယ်ယူပြီး သင့် Phantom ပိုက်ဆံအိတ်သို့ လွှဲပြောင်းပါ။">Purchase SOL from an exchange and transfer it to your Phantom wallet.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 data-en="Swap on Jupiter" data-my="Jupiter တွင်လဲလှယ်ပါ">Swap on Jupiter</h3>
+                        <p data-en="Visit Jupiter Exchange and swap SOL for SHWE-PAY tokens instantly." data-my="Jupiter Exchange သို့သွားရောက်ပြီး SOL ကို SHWE-PAY တိုကင်များနှင့် ချက်ချင်းလဲလှယ်ပါ။">Visit Jupiter Exchange and swap SOL for SHWE-PAY tokens instantly.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3 data-en="Hold & Earn" data-my="ကိုင်ဆောင်ပြီးရယူပါ">Hold & Earn</h3>
+                        <p data-en="Hold your SHWE-PAY tokens and be part of the payment revolution." data-my="သင့် SHWE-PAY တိုကင်များကို ကိုင်ဆောင်ပြီး ငွေပေးချေမှုတော်လှန်ရေး၏ တစ်စိတ်တစ်ပိုင်းဖြစ်ပါ။">Hold your SHWE-PAY tokens and be part of the payment revolution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Whitepaper Section -->
+        <section id="whitepaper">
+            <div class="container">
+                <div class="whitepaper-section">
+                    <h2 data-en="Whitepaper" data-my="အဖြူစာတမ်း">Whitepaper</h2>
+                    <p data-en="Read our comprehensive whitepaper to understand the vision, technology, and roadmap of SHWE-PAY." data-my="SHWE-PAY ၏ အမြင်၊ နည်းပညာနှင့် လမ်းပြမြေပုံကို နားလည်ရန် ကျွန်ုပ်တို့၏ ပြည့်စုံသော အဖြူစာတမ်းကို ဖတ်ရှုပါ။">Read our comprehensive whitepaper to understand the vision, technology, and roadmap of SHWE-PAY.</p>
+                    <button class="btn btn-primary" id="downloadWhitepaper">
+                        <span data-en="Download Whitepaper" data-my="အဖြူစာတမ်းဒေါင်းလုဒ်လုပ်ပါ">Download Whitepaper</span>
+                    </button>
+                </div>
+
+                <!-- Legal Disclaimer -->
+                <div class="disclaimer">
+                    <h3 data-en="Legal Disclaimer" data-my="တရားဝင်ငြင်းဆိုချက်">Legal Disclaimer</h3>
+                    <p data-en="SHWE-PAY tokens are digital assets on the Solana blockchain. This website provides information only and does not constitute financial advice. Cryptocurrency investments carry inherent risks. Always conduct your own research (DYOR) before investing. Token prices are volatile and may fluctuate. We do not guarantee returns or token value. By purchasing SHWE-PAY tokens, you acknowledge these risks. Not available in restricted jurisdictions. Consult local regulations before participating." data-my="SHWE-PAY တိုကင်များသည် Solana blockchain ပေါ်ရှိ ဒစ်ဂျစ်တယ်ပိုင်ဆိုင်မှုများဖြစ်သည်။ ဤဝက်ဘ်ဆိုက်သည် သတင်းအချက်အလက်များကိုသာ ပေးပါသည် ငွေကြေးအကြံပြုချက်မဟုတ်ပါ။ cryptocurrency ရင်းနှီးမြှုပ်နှံမှုများတွင် မွေးရာပါအန္တရာယ်များရှိသည်။ ရင်းနှီးမြှုပ်နှံခြင်းမပြုမီ အမြဲတမ်းသင့်ကိုယ်ပိုင်သုတေသနပြုပါ (DYOR)။ တိုကင်ဈေးနှုန်းများသည် မတည်ငြိမ်ပြီး အပြောင်းအလဲရှိနိုင်သည်။ ကျွန်ုပ်တို့သည် ပြန်လာမှုများ သို့မဟုတ် တိုကင်တန်ဖိုးကို အာမခံမပေးပါ။ SHWE-PAY တိုကင်များဝယ်ယူခြင်းအားျဖင့် သင်သည် ဤအန္တရာယ်များကို အသိအမှတ်ပြုပါသည်။ ကန့်သတ်ထားသော တရားစီရင်ပိုင်ခွင့်များတွင် မရရှိနိုင်ပါ။ ပါဝင်ခြင်းမပြုမီ ဒေသဆိုင်ရာ စည်းမျဉ်းများကို တိုင်ပင်ပါ။">SHWE-PAY tokens are digital assets on the Solana blockchain. This website provides information only and does not constitute financial advice. Cryptocurrency investments carry inherent risks. Always conduct your own research (DYOR) before investing. Token prices are volatile and may fluctuate. We do not guarantee returns or token value. By purchasing SHWE-PAY tokens, you acknowledge these risks. Not available in restricted jurisdictions. Consult local regulations before participating.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SHWE-PAY. <span data-en="All rights reserved." data-my="မူပိုင်ခွင့်အားလုံးလေ့ကျင့်ထားသည်။">All rights reserved.</span></p>
+            <p style="margin-top: 10px; font-size: 14px;">
+                <span data-en="Built on Solana | Secure | Decentralized" data-my="Solana ပေါ်တွင်တည်ဆောက်ထားသည် | လုံခြုံသည် | ဗဟိုချုပ်ကိုင်မှုမရှိသော">Built on Solana | Secure | Decentralized</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Solana Web3.js - Pinned to specific version for stability -->
+    <!-- Note: SRI hash verification requires the exact file. Remove integrity if using unpkg or verify hash -->
+    <script src="https://unpkg.com/@solana/web3.js@1.87.6/lib/index.iife.min.js" 
+            crossorigin="anonymous"></script>
+
+    <script>
+        // Notification System
+        function showNotification(type, title, message, duration = 5000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            const icons = {
+                success: '✓',
+                error: '✕',
+                info: 'ℹ'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon">${icons[type] || 'ℹ'}</div>
+                    <div class="notification-text">
+                        <div class="notification-title">${title}</div>
+                        <div class="notification-message">${message}</div>
+                    </div>
+                    <button class="notification-close">×</button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.addEventListener('click', () => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+        }
+
+        // Language Switcher
+        const langSwitcher = document.getElementById('langSwitcher');
+        const translatableElements = document.querySelectorAll('[data-en]');
+
+        function switchLanguage(lang) {
+            translatableElements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        langSwitcher.addEventListener('change', (e) => {
+            switchLanguage(e.target.value);
+        });
+
+        // Load saved language preference
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        langSwitcher.value = savedLang;
+        if (savedLang !== 'en') {
+            switchLanguage(savedLang);
+        }
+
+        // Phantom Wallet Integration
+        const connectWalletBtn = document.getElementById('connectWallet');
+        const walletInfo = document.getElementById('walletInfo');
+        const walletAddress = document.getElementById('walletAddress');
+        const balanceDisplay = document.getElementById('balanceDisplay');
+
+        async function connectWallet() {
+            try {
+                // Check if Phantom is installed
+                const isPhantomInstalled = window.solana && window.solana.isPhantom;
+                
+                if (!isPhantomInstalled) {
+                    const currentLang = langSwitcher.value;
+                    showNotification(
+                        'info',
+                        currentLang === 'en' ? 'Phantom Required' : 'Phantom လိုအပ်သည်',
+                        currentLang === 'en' 
+                            ? 'Please install Phantom wallet to connect. Click OK to visit phantom.app'
+                            : 'ချိတ်ဆက်ရန် Phantom ပိုက်ဆံအိတ်ကိုထည့်သွင်းပါ။ phantom.app သို့သွားရန် OK နှိပ်ပါ',
+                        7000
+                    );
+                    window.open('https://phantom.app/', '_blank');
+                    return;
+                }
+
+                // Connect to Phantom
+                const resp = await window.solana.connect();
+                const pubKey = resp.publicKey.toString();
+                
+                // Display wallet info
+                walletAddress.textContent = `${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`;
+                walletInfo.style.display = 'block';
+                
+                // Update button text
+                const buttonText = connectWalletBtn.querySelector('.wallet-text');
+                const currentLang = langSwitcher.value;
+                buttonText.textContent = currentLang === 'en' ? 'Connected' : 'ချိတ်ဆက်ပြီး';
+                connectWalletBtn.style.background = 'var(--gradient)';
+                connectWalletBtn.style.color = 'var(--dark-bg)';
+                
+                // Show success notification
+                showNotification(
+                    'success',
+                    currentLang === 'en' ? 'Wallet Connected' : 'ပိုက်ဆံအိတ်ချိတ်ဆက်ပြီး',
+                    currentLang === 'en' 
+                        ? `Connected to ${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`
+                        : `${pubKey.slice(0, 4)}...${pubKey.slice(-4)} သို့ချိတ်ဆက်ပြီး`,
+                    3000
+                );
+                
+                // Get SOL balance
+                await updateBalance(resp.publicKey);
+                
+            } catch (err) {
+                console.error('Error connecting to wallet:', err);
+                const currentLang = langSwitcher.value;
+                showNotification(
+                    'error',
+                    currentLang === 'en' ? 'Connection Failed' : 'ချိတ်ဆက်မှုမအောင်မြင်ပါ',
+                    currentLang === 'en' 
+                        ? 'Failed to connect wallet. Please try again.'
+                        : 'ပိုက်ဆံအိတ်ချိတ်ဆက်မှု မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပါ။',
+                    5000
+                );
+            }
+        }
+
+        async function updateBalance(publicKey) {
+            try {
+                // Multiple RPC endpoints for better reliability
+                const rpcEndpoints = [
+                    'https://api.mainnet-beta.solana.com',
+                    'https://rpc.ankr.com/solana',
+                    'https://solana-mainnet.g.alchemy.com/v2/demo'
+                ];
+                
+                let balance = null;
+                let lastError = null;
+                
+                // Try each endpoint until one succeeds
+                for (const endpoint of rpcEndpoints) {
+                    try {
+                        const connection = new solanaWeb3.Connection(endpoint);
+                        balance = await connection.getBalance(publicKey);
+                        break; // Success, exit loop
+                    } catch (err) {
+                        lastError = err;
+                        console.warn(`Failed to fetch balance from ${endpoint}:`, err);
+                        continue; // Try next endpoint
+                    }
+                }
+                
+                if (balance !== null) {
+                    const solBalance = (balance / 1e9).toFixed(4);
+                    balanceDisplay.textContent = `${solBalance} SOL`;
+                } else {
+                    throw lastError || new Error('All RPC endpoints failed');
+                }
+            } catch (err) {
+                console.error('Error fetching balance:', err);
+                balanceDisplay.textContent = 'Balance unavailable';
+            }
+        }
+
+        connectWalletBtn.addEventListener('click', connectWallet);
+
+        // Auto-connect if previously connected
+        window.addEventListener('load', async () => {
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    const resp = await window.solana.connect({ onlyIfTrusted: true });
+                    if (resp.publicKey) {
+                        const pubKey = resp.publicKey.toString();
+                        walletAddress.textContent = `${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`;
+                        walletInfo.style.display = 'block';
+                        
+                        const buttonText = connectWalletBtn.querySelector('.wallet-text');
+                        const currentLang = langSwitcher.value;
+                        buttonText.textContent = currentLang === 'en' ? 'Connected' : 'ချိတ်ဆက်ပြီး';
+                        connectWalletBtn.style.background = 'var(--gradient)';
+                        connectWalletBtn.style.color = 'var(--dark-bg)';
+                        
+                        await updateBalance(resp.publicKey);
+                    }
+                } catch (err) {
+                    // User not previously connected, ignore
+                }
+            }
+        });
+
+        // Whitepaper Download
+        document.getElementById('downloadWhitepaper').addEventListener('click', () => {
+            // Create a comprehensive whitepaper content
+            const currentDate = new Date();
+            const whitepaperContent = `
+SHWE-PAY WHITEPAPER
+===================
+
+Version 1.0 | ${currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+
+EXECUTIVE SUMMARY
+-----------------
+SHWE-PAY is a Solana-based SPL token designed to revolutionize digital payments in Myanmar and beyond. Built on the high-performance Solana blockchain, SHWE-PAY offers fast, secure, and cost-effective transactions for the digital economy.
+
+VISION
+------
+To become the leading payment token in Southeast Asia, bridging traditional finance with blockchain technology.
+
+TECHNOLOGY
+----------
+- Blockchain: Solana
+- Token Standard: SPL (Solana Program Library)
+- Consensus: Proof of History (PoH) + Proof of Stake (PoS)
+- Transaction Speed: ~400ms
+- Transaction Cost: <$0.001
+
+TOKENOMICS
+----------
+- Total Supply: 1,000,000,000 SHWE
+- Token Type: SPL Token
+- Distribution: Fair Launch
+- Liquidity: Locked and Secured
+
+USE CASES
+---------
+1. Digital Payments
+2. Cross-border Remittances
+3. E-commerce Integration
+4. Peer-to-peer Transfers
+5. Merchant Services
+
+ROADMAP
+-------
+Q1 2026: Token Launch & DEX Listing
+Q2 2026: Partnership Development
+Q3 2026: Mobile App Release
+Q4 2026: Major Exchange Listings
+
+SECURITY
+--------
+- Audited Smart Contract
+- Liquidity Locked
+- Community-driven Governance
+- Transparent Operations
+
+TEAM
+----
+Experienced blockchain developers and payment industry experts committed to building the future of digital payments.
+
+LEGAL NOTICE
+------------
+This whitepaper is for informational purposes only. It does not constitute investment advice or an offer to sell securities. Please conduct thorough research before participating.
+
+For more information, visit our website or join our community.
+
+© 2026 SHWE-PAY. All rights reserved.
+            `;
+
+            // Create and download the file
+            const blob = new Blob([whitepaperContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'SHWE-PAY-Whitepaper.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
