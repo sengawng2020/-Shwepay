@@ -97,6 +97,15 @@
         document.getElementById('t-rd-title').innerText = langs[l].rd;
         document.getElementById('t-contract').innerText = langs[l].contract;
     }
-</script>
+</script><section id="whitepaper">
+    <div class="card">
+        <h2 id="t-wp-title">Whitepaper</h2>
+        <p id="t-wp-sub">Learn more about SHWE-PAY vision...</p>
+        <a href="whitepaper.pdf" download class="btn btn-p">
+            <span id="t-wp-btn">Download Whitepaper</span>
+        </a>
+    </div>
+</section>
+
 </body>
 </html>
