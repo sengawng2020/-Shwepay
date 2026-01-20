@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHWE-PAY | Solana Payment Token</title>
+
+  <!-- SEO -->
+  <meta name="description" content="SHWE-PAY is a fast, secure, low-fee Solana payment token.">
+  <meta name="keywords" content="SHWE-PAY, Solana, SPL Token, Crypto Payments">
+
+  <!-- SECURITY -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://api.mainnet-beta.solana.com;">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #0b0f19;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    header {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #7f5af0, #2cb67d);
+    }
+    section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h1, h2 { margin-bottom: 20px; }
+    .card {
+      background: #161b2e;
+      padding: 30px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 32px;
+      background: #ffffff;
+      color: #0b0f19;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+    }
+    footer {
+      background: #070a12;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    code { color: #2cb67d; word-break: break-all; }
+    .muted { color: #9aa4bf; font-size: 14px; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 data-i18n="title">SHWE-PAY</h1>
+  <p data-i18n="subtitle">
+    Fast, secure, and low-fee digital payments powered by the Solana blockchain.
+  </p>
+
+  <button class="btn" onclick="connectWallet()">Connect Wallet</button>
+  <a class="btn btn-outline" target="_blank"
+     href="https://jup.ag/swap/SOL-AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW">
+     Buy SHWE-PAY
+  </a>
+
+  <div style="margin-top:15px;">
+    <button class="btn btn-outline" onclick="setLang('en')">EN</button>
+    <button class="btn btn-outline" onclick="setLang('my')">မြန်မာ</button>
+  </div>
+</header>
+
+<section>
+  <div class="card">
+    <p id="walletMessage">Wallet not connected</p>
+    <p id="walletBalances"></p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="about_title">About SHWE-PAY</h2>
+  <div class="card">
+    <p data-i18n="about_text">
+      SHWE-PAY is a Solana-based digital payment token designed for fast, secure,
+      and low-cost peer-to-peer transactions.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="tokenomics_title">Tokenomics</h2>
+  <div class="card">
+    <p><strong>Total Supply:</strong> Fixed</p>
+    <p><strong>Network:</strong> Solana</p>
+    <p><strong>Liquidity:</strong> Public DEX</p>
+    <p><strong>Utility:</strong> Payments & Transfers</p>
+    <p class="muted">Contract Address</p>
+    <code>AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="how_title">How to Buy</h2>
+  <div class="card">
+    <p data-i18n="buy_1"></p>
+    <p data-i18n="buy_2"></p>
+    <p data-i18n="buy_3"></p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="whitepaper_title">Whitepaper</h2>
+  <div class="card">
+    <p data-i18n="whitepaper_text">
+      Learn more about SHWE-PAY vision, technology, and use cases.
+    </p>
+    <a class="btn" href="whitepaper.pdf" target="_blank" data-i18n="download_wp">
+      Download Whitepaper
+    </a>
+  </div>
+</section>
+
+<section>
+  <div class="card muted" data-i18n="disclaimer">
+    SHWE-PAY is a decentralized digital asset and not an investment product.
+    Cryptocurrency involves risk. Always do your own research.
+  </div>
+</section>
+
+<footer>
+  <p class="muted">© 2026 SHWE-PAY Ecosystem. Built on Solana.</p>
+</footer>
+
+<script>
+/* ---------- WALLET ---------- */
+let walletPublicKey = null;
+const TOKEN_MINT = "AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW";
+const RPC = "https://api.mainnet-beta.solana.com";
+
+function shorten(a){ return a.slice(0,4)+"..."+a.slice(-4); }
+
+async function connectWallet(){
+  if(!window.solana || !window.solana.isPhantom){
+    alert("Please install Phantom Wallet");
+    window.open("https://phantom.app","_blank");
+    return;
+  }
+  const r = await window.solana.connect();
+  walletPublicKey = r.publicKey.toString();
+  document.getElementById("walletMessage").innerText =
+    "Connected: " + shorten(walletPublicKey);
+  loadBalances();
+}
+
+async function loadBalances(){
+  const sol = await fetch(RPC,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({jsonrpc:"2.0",id:1,method:"getBalance",params:[walletPublicKey]})
+  }).then(r=>r.json());
+  const solBal = (sol.result.value/1e9).toFixed(4);
+
+  document.getElementById("walletBalances").innerHTML =
+    "SOL Balance: <strong>"+solBal+"</strong>";
+}
+
+/* ---------- LANGUAGE ---------- */
+const translations = {
+  en:{
+    title:"SHWE-PAY",
+    subtitle:"Fast, secure, and low-fee digital payments powered by the Solana blockchain.",
+    about_title:"About SHWE-PAY",
+    about_text:"SHWE-PAY is a Solana-based digital payment token designed for fast, secure, and low-cost peer-to-peer transactions.",
+    tokenomics_title:"Tokenomics",
+    how_title:"How to Buy",
+    buy_1:"1. Install Phantom or Solflare wallet",
+    buy_2:"2. Send SOL to your wallet",
+    buy_3:"3. Swap SOL for SHWE-PAY on Jupiter or Raydium",
+    whitepaper_title:"Whitepaper",
+    whitepaper_text:"Learn more about SHWE-PAY vision, technology, and use cases.",
+    download_wp:"Download Whitepaper",
+    disclaimer:"SHWE-PAY is a decentralized digital asset and not an investment product. Cryptocurrency involves risk."
+  },
+  my:{
+    title:"SHWE-PAY",
+    subtitle:"Solana Blockchain ကိုအသုံးပြုထားသော အမြန်၊ လုံခြုံပြီး အခကြေးငွေနည်းသော ဒစ်ဂျစ်တယ်ငွေပေးချေမှု Token ဖြစ်ပါသည်။",
+    about_title:"SHWE-PAY အကြောင်း",
+    about_text:"SHWE-PAY သည် Solana Blockchain အပေါ်အခြေခံထားသော အမြန်နှုန်းမြင့်၊ လုံခြုံပြီး အခကြေးငွေနည်းသော ငွေပေးချေမှု Token ဖြစ်ပါသည်။",
+    tokenomics_title:"Tokenomics",
+    how_title:"ဝယ်ယူနည်း",
+    buy_1:"၁။ Phantom သို့မဟုတ် Solflare Wallet ကို တပ်ဆင်ပါ",
+    buy_2:"၂။ Wallet ထဲသို့ SOL ထည့်ပါ",
+    buy_3:"၃။ Jupiter သို့မဟုတ် Raydium တွင် SHWE-PAY ကို လဲလှယ်ပါ",
+    whitepaper_title:"Whitepaper",
+    whitepaper_text:"SHWE-PAY ၏ ရည်ရွယ်ချက်နှင့် နည်းပညာများကို ဖတ်ရှုနိုင်ပါသည်။",
+    download_wp:"Whitepaper ဒေါင်းလုဒ်",
+    disclaimer:"SHWE-PAY သည် ရင်းနှီးမြှုပ်နှံမှု မဟုတ်ပါ။ Cryptocurrency သည် အန္တရာယ်ရှိပါသည်။"
+  }
+};
+
+function setLang(l){
+  document.querySelectorAll("[data-i18n]").forEach(e=>{
+    const k=e.getAttribute("data-i18n");
+    if(translations[l][k]) e.innerText=translations[l][k];
+  });
+  localStorage.setItem("lang",l);
+}
+setLang(localStorage.getItem("lang")||"en");
+</script>
+
+</body>
+</html>
