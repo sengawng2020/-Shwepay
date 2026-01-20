@@ -123,6 +123,23 @@ function setLang(l) {
     document.getElementById('t-sub').innerText = langs[l].sub;
     document.getElementById('t-contract').innerText = langs[l].contract;
     document.getElementById('t-wallet-status').innerText = langs[l].status;
+  const langs = {
+    en: { 
+        wp_title: "Whitepaper", 
+        wp_sub: "Learn more about SHWE-PAY vision, technology, and roadmap." 
+    },
+    my: { 
+        wp_title: "စီမံကိန်းအသေးစိတ် (Whitepaper)", 
+        wp_sub: "SHWE-PAY ၏ ရည်ရွယ်ချက်၊ နည်းပညာနှင့် ရှေ့လုပ်ငန်းစဉ်များကို ဖတ်ရှုရန်။" 
+    }
+};
+
+function setLang(l) {
+    // အခြားစာသားများ...
+    document.getElementById('t-wp-title').innerText = langs[l].wp_title;
+    document.getElementById('t-wp-sub').innerText = langs[l].wp_sub;
+}
+
 }
 </script>
 </body>
