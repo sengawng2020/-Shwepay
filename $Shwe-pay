@@ -1,82 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHWE-PAY | Solana Payment Token</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root { --p: #7f5af0; --s: #2cb67d; --bg: #0b0f19; --card: #161b2e; --text: #ffffff; }
-    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    header { padding: 100px 20px; text-align: center; background: radial-gradient(circle at top, rgba(127,90,240,0.1), transparent); }
-    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    .card { background: var(--card); padding: 35px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-    .btn { padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; cursor: pointer; border: none; transition: 0.3s; display: inline-block; margin: 10px; }
-    .btn-p { background: var(--p); color: white; }
-    .btn-o { background: transparent; border: 2px solid var(--text); color: var(--text); }
-    .btn:hover { transform: translateY(-3px); opacity: 0.9; }
-    code { display: block; background: #000; padding: 15px; border-radius: 10px; color: var(--s); margin: 20px 0; word-break: break-all; }
-    footer { padding: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHWE-PAY | Next-Gen Solana Payments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --p: #7f5af0; --s: #2cb67d; --bg: #0b0f19; --card: #161b2e; --text: #ffffff; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
+        header { padding: 120px 20px; text-align: center; background: radial-gradient(circle at top, rgba(127,90,240,0.15), transparent); }
+        section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .card { background: var(--card); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .btn { padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; cursor: pointer; border: none; transition: 0.3s; display: inline-block; }
+        .btn-p { background: var(--p); color: white; margin: 10px; }
+        .btn-o { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: white; }
+        code { display: block; background: #000; padding: 15px; border-radius: 12px; color: var(--s); margin: 20px 0; word-break: break-all; font-size: 14px; }
+        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1 id="t-title" style="font-size: 4rem; margin:0;">SHWE-PAY</h1>
-  <p id="t-sub" style="color:#9aa4bf; font-size: 1.2rem; margin: 20px 0 40px;">Fast, secure payments on Solana.</p>
-  <div>
-    <button class="btn btn-p" onclick="connectWallet()">Connect Wallet</button>
-    <a href="https://jup.ag/swap/SOL-AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="btn btn-o">Buy Now</a>
-  </div>
-  <div style="margin-top:20px;">
-    <button class="btn btn-o" style="padding: 8px 15px" onclick="setLang('en')">EN</button>
-    <button class="btn btn-o" style="padding: 8px 15px" onclick="setLang('my')">မြန်မာ</button>
-  </div>
+    <h1 id="t-title" style="font-size: clamp(3rem, 8vw, 4rem); font-weight: 800; background: linear-gradient(135deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SHWE-PAY</h1>
+    <p id="t-sub" style="color:#9aa4bf; font-size: 1.25rem; max-width: 600px; margin: 20px auto 40px;">Welcome to the future of Myanmar Fintech. Fast and secure payments on Solana.</p>
+    <div>
+        <button class="btn btn-p" onclick="connectWallet()">Connect Wallet</button>
+        <a href="https://jup.ag/swap/SOL-AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="btn btn-o">Buy on Jupiter</a>
+    </div>
+    <div style="margin-top:25px;">
+        <button onclick="setLang('en')" class="btn btn-o" style="padding: 8px 15px; font-size: 12px;">EN</button>
+        <button onclick="setLang('my')" class="btn btn-o" style="padding: 8px 15px; font-size: 12px;">မြန်မာ</button>
+    </div>
 </header>
 
-<section id="wallet-info" style="display:none;">
-    <div class="card">
-        <p id="walletAddress">Connected</p>
-        <p id="solBalance"></p>
+<section id="tokenomics">
+    <h2 id="t-tokenomics" style="text-align:center">Tokenomics</h2>
+    <div class="grid">
+        <div class="card"><h3>Total Supply</h3><p>1,000,000,000</p></div>
+        <div class="card"><h3>Blockchain</h3><p>Solana (SPL)</p></div>
+        <div class="card"><h3>Liquidity</h3><p>Locked</p></div>
     </div>
 </section>
 
-<section>
-  <div class="card">
-    <h2 id="t-contract">Contract Address</h2>
-    <code>AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
-    <button class="btn btn-p" onclick="navigator.clipboard.writeText('AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW'); alert('Copied!')">Copy Address</button>
-  </div>
+<section id="contract">
+    <div class="card">
+        <h2 id="t-contract">Contract Address</h2>
+        <code>AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
+        <button class="btn btn-p" onclick="copyAddr()">Copy Address</button>
+    </div>
 </section>
 
 <footer>
-    <div style="margin-bottom: 20px;">
-        <a href="https://t.me/SHWE_PAY_Official/1" target="_blank">
-            <svg width="30" height="30" fill="white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.18l-1.91 9.02c-.14.63-.52.79-1.05.49l-2.91-2.15-1.4 1.35c-.15.15-.28.28-.58.28l.21-2.96 5.39-4.87c.23-.21-.05-.32-.35-.12l-6.66 4.19-2.87-.9c-.62-.19-.64-.62.13-.92l11.22-4.32c.52-.19.97.12.78.91z"/></svg>
-        </a>
-    </div>
-    <p style="color:#9aa4bf">© 2026 SHWE-PAY Ecosystem. Built on Solana.</p>
+    <p>© 2026 SHWE-PAY Ecosystem. Built on Solana.</p>
 </footer>
 
 <script>
-async function connectWallet() {
-    if (window.solana && window.solana.isPhantom) {
-        const resp = await window.solana.connect();
-        document.getElementById('wallet-info').style.display = 'block';
-        document.getElementById('walletAddress').innerText = "Address: " + resp.publicKey.toString().slice(0,6) + "...";
-    } else { alert("Please install Phantom Wallet"); }
-}
+    async function connectWallet() {
+        if (window.solana) {
+            await window.solana.connect();
+            alert("Wallet Connected!");
+        } else {
+            alert("Please install Phantom Wallet");
+            window.open("https://phantom.app", "_blank");
+        }
+    }
 
-const langs = {
-    en: { title: "SHWE-PAY", sub: "Fast, secure payments on Solana.", contract: "Contract Address" },
-    my: { title: "ရွှေပေး (SHWE-PAY)", sub: "Solana ပေါ်တွင် အမြန်ဆုံးနှင့် အလုံခြုံဆုံး ငွေပေးချေမှုစနစ်", contract: "တရားဝင် Contract လိပ်စာ" }
-};
+    function copyAddr() {
+        navigator.clipboard.writeText('AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW');
+        alert('Copied!');
+    }
 
-function setLang(l) {
-    document.getElementById('t-title').innerText = langs[l].title;
-    document.getElementById('t-sub').innerText = langs[l].sub;
-    document.getElementById('t-contract').innerText = langs[l].contract;
-}
+    const langs = {
+        en: { title: "SHWE-PAY", sub: "Welcome to the future of Myanmar Fintech. Fast and secure payments on Solana.", tokenomics: "Tokenomics", contract: "Contract Address" },
+        my: { title: "ရွှေပေး (SHWE-PAY)", sub: "မြန်မာ့ဖုန်းတက်ခ်၏ အနာဂတ်မှ ကြိုဆိုပါသည်။ Solana ပေါ်တွင် မြန်ဆန်လုံခြုံသော ငွေပေးချေမှုစနစ်။", tokenomics: "တိုကင်အချက်အလက်", contract: "တရားဝင်လိပ်စာ" }
+    };
+
+    function setLang(l) {
+        document.getElementById('t-title').innerText = langs[l].title;
+        document.getElementById('t-sub').innerText = langs[l].sub;
+        document.getElementById('t-tokenomics').innerText = langs[l].tokenomics;
+        document.getElementById('t-contract').innerText = langs[l].contract;
+    }
 </script>
 </body>
 </html>
