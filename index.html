@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta http-equiv="Content-Security-Policy"
+content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://api.mainnet-beta.solana.com;">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SHWE-PAY | Next-Gen Solana Payments</title>
@@ -19,7 +24,11 @@
     footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
     .lang-switcher { margin-top: 30px; }
   </style>
-</head>
+</hea<meta name="description" content="SHWE-PAY is a next-generation Solana payment token offering secure, fast, and low-fee digital transactions.">
+<meta property="og:title" content="SHWE-PAY | Next-Gen Solana Payments">
+<meta property="og:description" content="Secure, lightning-fast digital payments powered by Solana.">
+<meta property="og:type" content="website">
+d>
 <body>
 
 <header>
@@ -38,8 +47,30 @@
 <section id="wallet-section" style="display:none;">
     <div class="card">
         <h3 id="t-wallet-status">Wallet Connected</h3>
-        <p id="walletAddress" style="color:var(--s); font-weight:bold;"></p>
-    </div>
+     <script>
+async function connectWallet() {
+  if (!window.solana || !window.solana.isPhantom) {
+    alert("Please install Phantom Wallet");
+    window.open("https://phantom.app", "_blank");
+    return;
+  }
+  try {
+    const res = await window.solana.connect();
+    const addr = res.publicKey.toString();
+    alert("Connected: " + addr.slice(0,4) + "..." + addr.slice(-4));
+  } catch (e) {
+    console.error(e);
+  }
+}
+</script>
+
+</section>
+<section>
+  <div class="card" style="font-size:14px;color:#9aa4bf;">
+    SHWE-PAY is a decentralized digital asset and not an investment product.
+    Cryptocurrency involves risk and volatility. Nothing on this website
+    constitutes financial or investment advice.
+  </div>
 </section>
 
 <section id="token">
