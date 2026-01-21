@@ -1,146 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta http-equiv="Content-Security-Policy"
-content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://api.mainnet-beta.solana.com;">
-<meta http-equiv="X-Frame-Options" content="DENY">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta name="referrer" content="no-referrer">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHWE-PAY | Next-Gen Solana Payments</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHWE-PAY | Solana Payment Token</title>
+  <meta name="description" content="SHWE-PAY is a fast, low-fee digital payment token built on the Solana blockchain." />
   <style>
-    :root { --p: #7f5af0; --s: #2cb67d; --bg: #0b0f19; --card: #161b2e; --text: #ffffff; }
-    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
-    header { padding: 120px 20px; text-align: center; background: radial-gradient(circle at top, rgba(127,90,240,0.15), transparent); }
-    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    .card { background: var(--card); padding: 40px; border-radius: 24px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-    .btn { padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; cursor: pointer; border: none; transition: 0.3s; display: inline-block; margin: 10px; }
-    .btn-p { background: var(--p); color: white; }
-    .btn-o { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: white; }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-    code { display: block; background: #000; padding: 15px; border-radius: 12px; color: var(--s); margin: 20px 0; word-break: break-all; font-size: 14px; }
-    footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-    .lang-switcher { margin-top: 30px; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0f19;
+      color: #ffffff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #7f5af0, #2cb67d);
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      color: #7f5af0;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #161b2e;
+      padding: 25px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      padding: 12px;
+      border-bottom: 1px solid #2a2f45;
+      text-align: left;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 30px;
+      background: #ffffff;
+      color: #0b0f19;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+    }
+    footer {
+      background: #070a12;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .social-icon {
+      margin: 0 15px;
+      text-decoration: none;
+      display: inline-block;
+    }
   </style>
-</hea<meta name="description" content="SHWE-PAY is a next-generation Solana payment token offering secure, fast, and low-fee digital transactions.">
-<meta property="og:title" content="SHWE-PAY | Next-Gen Solana Payments">
-<meta property="og:description" content="Secure, lightning-fast digital payments powered by Solana.">
-<meta property="og:type" content="website">
-d>
+</head>
 <body>
 
 <header>
-  <h1 id="t-title" style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; background: linear-gradient(135deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SHWE-PAY</h1>
-  <p id="t-sub" style="color:#9aa4bf; font-size: 1.25rem; max-width: 600px; margin: 20px auto 40px;">Secure, lightning-fast digital payments powered by the Solana blockchain ecosystem.</p>
-  <div>
-    <button class="btn btn-p" onclick="connectWallet()">Connect Wallet</button>
-    <a href="https://jup.ag/swap/SOL-AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="btn btn-o">Buy SHWE-PAY</a>
-  </div>
-  <div class="lang-switcher">
-    <button class="btn btn-o" style="padding: 8px 20px; font-size: 14px;" onclick="setLang('en')">English</button>
-    <button class="btn btn-o" style="padding: 8px 20px; font-size: 14px;" onclick="setLang('my')">မြန်မာဘာသာ</button>
+  <h1>SHWE-PAY</h1>
+  <p>Fast, secure, and low-fee digital payments powered by the Solana blockchain.</p>
+  <div style="margin-top: 25px;">
+    <a href="#how-to-buy" class="btn">How to Buy</a>
+    <a href="https://dexscreener.com/solana/AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="btn btn-outline">View Live Chart</a>
   </div>
 </header>
 
-<section id="wallet-section" style="display:none;">
-    <div class="card">
-        <h3 id="t-wallet-status">Wallet Connected</h3>
-     <script>
-async function connectWallet() {
-  if (!window.solana || !window.solana.isPhantom) {
-    alert("Please install Phantom Wallet");
-    window.open("https://phantom.app", "_blank");
-    return;
-  }
-  try {
-    const res = await window.solana.connect();
-    const addr = res.publicKey.toString();
-    alert("Connected: " + addr.slice(0,4) + "..." + addr.slice(-4));
-  } catch (e) {
-    console.error(e);
-  }
-}
-</script>
-
-</section>
-<section>
-  <div class="card" style="font-size:14px;color:#9aa4bf;">
-    SHWE-PAY is a decentralized digital asset and not an investment product.
-    Cryptocurrency involves risk and volatility. Nothing on this website
-    constitutes financial or investment advice.
+<section id="contract-address" style="text-align: center;">
+  <div class="card" style="display: inline-block; border: 1px solid #7f5af0; background: rgba(127, 90, 240, 0.1);">
+    <p style="margin: 0; font-size: 0.9rem; color: #9aa4bf;">Official Contract Address</p>
+    <code id="ca-text" style="display: block; margin: 10px 0; font-size: 1rem; color: #2cb67d; word-break: break-all;">
+      AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW
+    </code>
+    <button onclick="copyCA()" class="btn" style="padding: 8px 20px; font-size: 0.8rem;">
+      Copy Address
+    </button>
   </div>
 </section>
 
-<section id="token">
+<section id="features">
+  <h2>Why Choose SHWE-PAY?</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Lightning Fast</h3>
+      <p>Transactions settle in seconds thanks to Solana's high-throughput architecture.</p>
+    </div>
+    <div class="card">
+      <h3>Ultra-Low Fees</h3>
+      <p>Send and receive payments globally for a fraction of a cent.</p>
+    </div>
+    <div class="card">
+      <h3>Secure</h3>
+      <p>Decentralized security ensures your assets remain safe and under your control.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how-to-buy">
+  <h2>How to Buy</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1. Create a Wallet</h3>
+      <p>Download Phantom or Solflare from the app store or as a browser extension.</p>
+    </div>
+    <div class="card">
+      <h3>2. Get Some SOL</h3>
+      <p>Purchase SOL from an exchange and send it to your wallet address.</p>
+    </div>
+    <div class="card">
+      <h3>3. Swap on DEX</h3>
+      <p>Connect to Jupiter or Raydium and swap your SOL for SHWE-PAY.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics">
+  <h2>Tokenomics</h2>
   <div class="card">
-    <h2 id="t-contract" style="margin-top:0">Official Contract</h2>
-    <p style="color:#9aa4bf">Verified Solana SPL Token Address</p>
-    <code>AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
-    <button class="btn btn-p" style="padding: 12px 25px" onclick="copyAddr()">Copy Address</button>
+    <table>
+      <thead>
+        <tr><th>Detail</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Token Name</td><td>SHWE-PAY</td></tr>
+        <tr><td>Symbol</td><td>SHWE</td></tr>
+        <tr><td>Blockchain</td><td>Solana (SPL)</td></tr>
+        <tr><td>Total Supply</td><td>1,000,000,000 SHWE</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="roadmap">
+  <h2>Project Roadmap</h2>
+  <div class="card">
+    <p><strong style="color: #2cb67d;">Phase 1:</strong> Launch & Community Building</p>
+    <p><strong style="color: #7f5af0;">Phase 2:</strong> DEX Listings & Marketing Push</p>
+    <p><strong style="color: #2cb67d;">Phase 3:</strong> Payment Integration & Partnerships</p>
   </div>
 </section>
 
 <footer>
-    <div style="margin-bottom: 30px; display: flex; justify-content: center; gap: 20px;">
-        <a href="https://x.com/DavidGwa168323" target="_blank">
-            <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231z"/></svg>
-        </a>
-        <a href="https://t.me/SHWE_PAY_Official/1" target="_blank">
-            <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M11.944 0C5.346 0 0 5.346 0 11.944c0 6.598 5.346 11.944 11.944 11.944 6.598 0 11.944-5.346 11.944-11.944C23.888 5.346 18.542 0 11.944 0zm5.835 8.169l-1.957 9.228c-.148.651-.534.812-1.079.506l-3.003-2.213-1.448 1.393c-.161.161-.295.295-.605.295l.214-3.053 5.556-5.019c.241-.214-.053-.333-.374-.121l-6.868 4.324-2.96-.925c-.643-.201-.655-.643.134-.951l11.565-4.455c.535-.195.998.127.821.99z"/></svg>
-        </a>
-    </div>
-    <p style="color:#9aa4bf; font-size: 14px;">© 2026 SHWE-PAY Ecosystem. Built on Solana.</p>
+  <div style="margin-bottom: 20px;">
+    <a href="#" class="social-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="#" class="social-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M11.944 0C5.346 0 0 5.346 0 11.944c0 6.598 5.346 11.944 11.944 11.944 6.598 0 11.944-5.346 11.944-11.944C23.888 5.346 18.542 0 11.944 0zm5.835 8.169l-1.957 9.228c-.148.651-.534.812-1.079.506l-3.003-2.213-1.448 1.393c-.161.161-.295.295-.605.295l.214-3.053 5.556-5.019c.241-.214-.053-.333-.374-.121l-6.868 4.324-2.96-.925c-.643-.201-.655-.643.134-.951l11.565-4.455c.535-.195.998.127.821.99z"/></svg>
+    </a>
+  </div>
+  <p style="color: #9aa4bf;">&copy; 2026 SHWE-PAY. Built on Solana.</p>
 </footer>
 
 <script>
-async function connectWallet() {
-    if (window.solana && window.solana.isPhantom) {
-        try {
-            const resp = await window.solana.connect();
-            document.getElementById('wallet-section').style.display = 'block';
-            document.getElementById('walletAddress').innerText = resp.publicKey.toString();
-        } catch (err) { console.error(err); }
-    } else {
-        alert("Please install Phantom Wallet from phantom.app");
-        window.open("https://phantom.app", "_blank");
-    }
-}
-
-function copyAddr() {
-    navigator.clipboard.writeText('AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW');
-    alert('Contract Address Copied!');
-}
-
-const langs = {
-    en: { title: "SHWE-PAY", sub: "Secure, lightning-fast digital payments powered by the Solana blockchain ecosystem.", contract: "Official Contract", status: "Wallet Connected" },
-    my: { title: "ရွှေပေး (SHWE-PAY)", sub: "Solana Blockchain နည်းပညာသုံး အမြန်ဆုံးနှင့် အလုံခြုံဆုံး ဒစ်ဂျစ်တယ်ငွေပေးချေမှုစနစ်", contract: "တရားဝင် Contract လိပ်စာ", status: "Wallet ချိတ်ဆက်ပြီးပါပြီ" }
-};
-
-function setLang(l) {
-    document.getElementById('t-title').innerText = langs[l].title;
-    document.getElementById('t-sub').innerText = langs[l].sub;
-    document.getElementById('t-contract').innerText = langs[l].contract;
-    document.getElementById('t-wallet-status').innerText = langs[l].status;
-  const langs = {
-    en: { 
-        wp_title: "Whitepaper", 
-        wp_sub: "Learn more about SHWE-PAY vision, technology, and roadmap." 
-    },
-    my: { 
-        wp_title: "စီမံကိန်းအသေးစိတ် (Whitepaper)", 
-        wp_sub: "SHWE-PAY ၏ ရည်ရွယ်ချက်၊ နည်းပညာနှင့် ရှေ့လုပ်ငန်းစဉ်များကို ဖတ်ရှုရန်။" 
-    }
-};
-
-function setLang(l) {
-    // အခြားစာသားများ...
-    document.getElementById('t-wp-title').innerText = langs[l].wp_title;
-    document.getElementById('t-wp-sub').innerText = langs[l].wp_sub;
-}
-
-}
+  function copyCA() {
+    const ca = "AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW";
+    navigator.clipboard.writeText(ca).then(() => {
+      alert("Contract Address copied!");
+    });
+  }
 </script>
+
 </body>
 </html>
