@@ -3,109 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHWE-PAY | Solana Payment Roadmap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>SHWE-PAY | Professional Solana Payment Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --p: #7f5af0; --s: #2cb67d; --bg: #0b0f19; --card: #161b2e; --text: #ffffff; }
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        header { padding: 100px 20px; text-align: center; background: radial-gradient(circle at top, rgba(127,90,240,0.15), transparent); }
-        section { padding: 60px 20px; max-width: 1100px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
-        .card { background: var(--card); padding: 35px; border-radius: 24px; text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: var(--p); }
-        .btn { padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; cursor: pointer; border: none; display: inline-block; margin: 10px; }
-        .btn-p { background: var(--p); color: white; }
-        .btn-o { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: white; }
-        
-        /* Roadmap Styling */
-        .roadmap-item { text-align: left; position: relative; padding-left: 30px; margin-bottom: 20px; border-left: 2px solid var(--p); }
-        .roadmap-item::before { content: ''; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--s); }
-        
-        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.7; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f3f4f6; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #7f5af0, #2cb67d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1 id="t-title" style="font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; background: linear-gradient(135deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">The Future of <br>SHWE-PAY</h1>
-    <p id="t-sub" style="color:#9aa4bf; font-size: 1.25rem; margin-bottom: 40px;">Next-generation payment ecosystem on Solana.</p>
-    <div>
-        <button class="btn btn-p" onclick="connectWallet()">Connect Wallet</button>
-        <button class="btn btn-o" onclick="setLang('my')">မြန်မာဘာသာ</button>
-    </div>
-</header>
-
-<section id="roadmap">
-    <h2 id="t-rd-title" style="text-align:center; font-size: 2.5rem; margin-bottom: 50px;">Project Roadmap 2026</h2>
-    <div class="grid">
-        <div class="card">
-            <h3 style="color: var(--s);">Phase 1: Launch</h3>
-            <div class="roadmap-item"><p>Token Deployment on Solana</p></div>
-            <div class="roadmap-item"><p>Community Building (TG/X)</p></div>
-            <div class="roadmap-item"><p>Website V1 Release</p></div>
+    <nav class="fixed w-full z-50 glass py-4 px-6 flex justify-between items-center">
+        <div class="text-2xl font-bold gradient-text underline decoration-indigo-500">SHWE-PAY</div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#about" class="hover:text-purple-400 transition">About</a>
+            <a href="#tokenomics" class="hover:text-purple-400 transition">Tokenomics</a>
+            <a href="#roadmap" class="hover:text-purple-400 transition">Roadmap</a>
         </div>
-        <div class="card">
-            <h3 style="color: var(--p);">Phase 2: Growth</h3>
-            <div class="roadmap-item"><p>DEX Listing (Jupiter/Raydium)</p></div>
-            <div class="roadmap-item"><p>Marketing Campaign</p></div>
-            <div class="roadmap-item"><p>Strategic Partnerships</p></div>
+        <a href="https://dexscreener.com/solana/AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-full font-bold transition">Buy Now</a>
+    </nav>
+
+    <section class="pt-32 pb-20 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">The Future of <span class="gradient-text">Myanmar Fintech</span></h1>
+        <p class="max-w-2xl mx-auto text-gray-400 text-lg mb-10">Secure, non-custodial payment solution built on the high-speed Solana blockchain for instant global transactions.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <div class="glass p-4 rounded-xl flex items-center gap-3">
+                <span class="text-gray-400 text-sm">Official CA:</span>
+                <code class="text-green-400 font-mono text-sm break-all">AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
+                <button onclick="navigator.clipboard.writeText('AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW'); alert('Address Copied!')" class="text-white hover:text-purple-400"><i class="fas fa-copy"></i></button>
+            </div>
         </div>
-        <div class="card">
-            <h3 style="color: #ffbd2e;">Phase 3: Utility</h3>
-            <div class="roadmap-item"><p>SHWE-PAY Wallet Beta</p></div>
-            <div class="roadmap-item"><p>Payment Gateway Integration</p></div>
-            <div class="roadmap-item"><p>Global Expansion</p></div>
+    </section>
+
+    <section id="tokenomics" class="py-20 px-6 bg-gray-900/30">
+        <h2 class="text-4xl font-bold text-center mb-16">Tokenomics</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-purple-500 text-3xl mb-4 font-bold">1 Billion</div>
+                <div class="text-gray-400">Total Supply</div>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center border-purple-500/50">
+                <div class="text-purple-500 text-3xl mb-4 font-bold">0%</div>
+                <div class="text-gray-400">Tax Fee</div>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-purple-500 text-3xl mb-4 font-bold">100%</div>
+                <div class="text-gray-400">Liquidity Burnt</div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="tokenomics">
-    <div class="card">
-        <h2 id="t-contract">Contract Address</h2>
-        <code style="display:block; background:#000; padding:15px; color:var(--s); border-radius:10px; word-break:break-all;">AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW</code>
-        <br>
-        <a href="https://jup.ag/swap/SOL-AFBuHorDPnseM2NQNrmFtPBaJUYuKNHksTJw4nfpyeQW" target="_blank" class="btn btn-p">Buy SHWE-PAY</a>
-    </div>
-</section>
+    <section id="roadmap" class="py-20 px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Roadmap</h2>
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="flex gap-6 items-start">
+                <div class="bg-purple-600 p-3 rounded-full mt-1">1</div>
+                <div>
+                    <h3 class="text-xl font-bold">Phase 1: Launch</h3>
+                    <p class="text-gray-400">Token creation, website launch, and community building on Telegram & X.</p>
+                </div>
+            </div>
+            <div class="flex gap-6 items-start border-l-2 border-gray-800 ml-5 pl-11 py-4">
+                <div class="bg-gray-800 p-3 rounded-full mt-1 text-gray-500">2</div>
+                <div>
+                    <h3 class="text-xl font-bold">Phase 2: Growth</h3>
+                    <p class="text-gray-400">Listing on DEX trackers, marketing campaigns, and strategic partnerships.</p>
+                </div>
+            </div>
+            <div class="flex gap-6 items-start">
+                <div class="bg-gray-800 p-3 rounded-full mt-1 text-gray-500">3</div>
+                <div>
+                    <h3 class="text-xl font-bold">Phase 3: Utility</h3>
+                    <p class="text-gray-400">Mobile app integration and merchant payment gateway testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-    <p>© 2026 SHWE-PAY Ecosystem. Built on Solana Blockchain.</p>
-</footer>
-
-<script>
-    async function connectWallet() {
-        if (window.solana) {
-            await window.solana.connect();
-            alert("Wallet Connected Successfully!");
-        } else {
-            alert("Please install Phantom Wallet");
-        }
-    }
-
-    const langs = {
-        my: {
-            title: "ရွှေပေး (SHWE-PAY) ၏ အနာဂတ်",
-            sub: "Solana ပေါ်တွင် အမြန်ဆုံးနှင့် အလုံခြုံဆုံး ငွေပေးချေမှုစနစ်။",
-            rd: "စီမံကိန်း အဆင့်ဆင့် (Roadmap)",
-            contract: "တရားဝင် Contract လိပ်စာ"
-        }
-    };
-
-    function setLang(l) {
-        document.getElementById('t-title').innerText = langs[l].title;
-        document.getElementById('t-sub').innerText = langs[l].sub;
-        document.getElementById('t-rd-title').innerText = langs[l].rd;
-        document.getElementById('t-contract').innerText = langs[l].contract;
-    }
-</script><section id="whitepaper">
-    <div class="card">
-        <h2 id="t-wp-title">Whitepaper</h2>
-        <p id="t-wp-sub">Learn more about SHWE-PAY vision...</p>
-        <a href="whitepaper.pdf" download class="btn btn-p">
-            <span id="t-wp-btn">Download Whitepaper</span>
-        </a>
-    </div>
-</section>
+    <footer class="py-12 px-6 border-t border-gray-800 text-center">
+        <div class="flex justify-center space-x-6 mb-8">
+            <a href="https://x.com/DavidGwa168323" target="_blank" class="text-3xl hover:text-purple-400 transition"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://t.me/SHWE_PAY_Official/1" target="_blank" class="text-3xl hover:text-purple-400 transition"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p class="text-gray-500">© 2026 SHWE-PAY Ecosystem. Powered by Solana.</p>
+    </footer>
 
 </body>
 </html>
