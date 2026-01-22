@@ -47,7 +47,34 @@
         th { color: var(--gold); }
     </style>
 </head>
-<body>
+<body<script>
+const connectBtn = document.getElementById('connectBtn');
+const walletAddress = document.getElementById('walletAddress');
+
+connectBtn.addEventListener('click', async () => {
+    // Phantom Wallet ရှိမရှိ စစ်ဆေးခြင်း
+    const isPhantomInstalled = window.solana && window.solana.isPhantom;
+
+    if (isPhantomInstalled) {
+        try {
+            // Wallet နှင့် ချိတ်ဆက်ခြင်း
+            const response = await window.solana.connect();
+            const publicKey = response.publicKey.toString();
+            
+            // UI ကို Update လုပ်ခြင်း
+            walletAddress.innerText = `Connected: ${publicKey.substring(0, 4)}...${publicKey.substring(publicKey.length - 4)}`;
+            connectBtn.innerText = "Connected ✅";
+            connectBtn.style.background = "#14F195";
+        } catch (err) {
+            console.error("User denied the connection.");
+        }
+    } else {
+        // Phantom မရှိလျှင် Download ဆွဲရန် အသိပေးခြင်း
+        alert("Phantom Wallet not found. Please install it from phantom.app");
+        window.open("https://phantom.app/", "_blank");
+    }
+});
+</script>>
 
     <div class="container">
         <nav>
