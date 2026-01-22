@@ -18,14 +18,7 @@
             color: white;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            line-height: 1.6;<script> }
-    } else {
-        // Phantom မရှိလျှင် Download ဆွဲရန် အသိပေးခြင်း
-        alert("Phantom Wallet not found. Please install it from phantom.app");
-        window.open("https://phantom.app/", "_blank");
-    }
-});
-</script>
+            line-height: 1.6;
         }
 
         .container { width: 90%; max-width: 1200px; margin: auto; }
@@ -35,8 +28,6 @@
         .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
 
         /* Hero Section */
-        <button id="connectBtn" class="btn">Connect Phantom Wallet</button>
-<p id="walletAddress" style="color: var(--solana-green); margin-top: 10px;"></p>
         .hero { padding: 100px 0; text-align: center; }
         h1 { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(45deg, var(--gold), #FFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
@@ -54,34 +45,7 @@
         th { color: var(--gold); }
     </style>
 </head>
-<body<script>
-const connectBtn = document.getElementById('connectBtn');
-const walletAddress = document.getElementById('walletAddress');
-
-connectBtn.addEventListener('click', async () => {
-    // Phantom Wallet ရှိမရှိ စစ်ဆေးခြင်း
-    const isPhantomInstalled = window.solana && window.solana.isPhantom;
-
-    if (isPhantomInstalled) {
-        try {
-            // Wallet နှင့် ချိတ်ဆက်ခြင်း
-            const response = await window.solana.connect();
-            const publicKey = response.publicKey.toString();
-            
-            // UI ကို Update လုပ်ခြင်း
-            walletAddress.innerText = `Connected: ${publicKey.substring(0, 4)}...${publicKey.substring(publicKey.length - 4)}`;
-            connectBtn.innerText = "Connected ✅";
-            connectBtn.style.background = "#14F195";
-        } catch (err) {
-            console.error("User denied the connection.");
-        }
-    } else {
-        // Phantom မရှိလျှင် Download ဆွဲရန် အသိပေးခြင်း
-        alert("Phantom Wallet not found. Please install it from phantom.app");
-        window.open("https://phantom.app/", "_blank");
-    }
-});
-</script>>
+<body>
 
     <div class="container">
         <nav>
