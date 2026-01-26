@@ -1,105 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$SHWE-PAY | Secure Myanmar Fintech</title>
-    <style>
-        :root {
-            --gold: #FFD700;
-            --solana-purple: #9945FF;
-            --solana-green: #14F195;
-            --dark-bg: #0A0A0A;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+<div class="grid-3">
 
-        body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-        }
+  <!-- Phase 1 -->
+  <div class="card">
+    <h3>Phase 1 — Genesis & Compliance (Q1–Q2 2026)</h3>
+    <ul class="roadmap-list">
+      <li><strong>Mainnet Token Launch:</strong> $SHWE goes live on Solana Mainnet with verified metadata for trust and transparency.</li>
+      <li><strong>Official Company Formation:</strong> Establish $SHWE‑PAY, Inc. as a Delaware C‑Corp to support long‑term growth and regulatory clarity.</li>
+      <li><strong>Liquidity Kickoff:</strong> Launch the SOL/$SHWE liquidity pool on Raydium for early trading and healthy market depth.</li>
+      <li><strong>Ecosystem Funding:</strong> Apply for the Solana Foundation’s Fintech for Emerging Markets grant.</li>
+    </ul>
+  </div>
 
-        .container { width: 90%; max-width: 1200px; margin: auto; }
+  <!-- Phase 2 -->
+  <div class="card">
+    <h3>Phase 2 — Ecosystem Building (Q3–Q4 2026)</h3>
+    <ul class="roadmap-list">
+      <li><strong>Merchant Pilot:</strong> Onboard the first 50 retail merchants in Myanmar to accept $SHWE via Solana Pay.</li>
+      <li><strong>Shwe‑Connect API:</strong> Release developer‑friendly tools for easy $SHWE payment integration.</li>
+      <li><strong>Security Audit:</strong> Complete a third‑party audit to ensure safety and reliability.</li>
+      <li><strong>Community Growth:</strong> Host AMAs, educational sessions, and local outreach to expand Telegram and X communities.</li>
+    </ul>
+  </div>
 
-        /* Navigation */
-        nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass); }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+  <!-- Phase 3 -->
+  <div class="card">
+    <h3>Phase 3 — Financial Inclusion & Mobile Apps (Q1–Q2 2027)</h3>
+    <ul class="roadmap-list">
+      <li><strong>Mobile Super App:</strong> Launch the $SHWE‑PAY non‑custodial wallet (iOS/Android) with a Burmese interface and beginner‑friendly UX.</li>
+      <li><strong>Reserve Transparency:</strong> Deploy real‑time dashboards for the 30/40/30 reserve model.</li>
+      <li><strong>Cross‑Border Remittance:</strong> Enable fast, low‑fee remittances for Myanmar workers abroad.</li>
+    </ul>
+  </div>
 
-        /* Hero Section */
-        .hero { padding: 100px 0; text-align: center;<button id="connectBtn" class="btn">Connect Phantom Wallet</button>
-<p id="walletAddress" style="color: var(--solana-green); margin-top: 10px;"></p> }
-        h1 { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(45deg, var(--gold), #FFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* CTA Button */
-        .btn { 
-            background: linear-gradient(90deg, var(--solana-purple), var(--solana-green));
-            padding: 15px 35px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.3s;
-        }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(20, 241, 149, 0.4); }
+  <!-- Phase 4 -->
+  <div class="card">
+    <h3>Phase 4 — Scaling & Institutional Integration (Q3–Q4 2027)</h3>
+    <ul class="roadmap-list">
+      <li><strong>Tier‑1 Exchange Listings:</strong> Pursue listings on major centralized exchanges to expand liquidity and global access.</li>
+      <li><strong>Micro‑Lending Protocol:</strong> Introduce DeFi‑powered micro‑loans using $SHWE as collateral.</li>
+      <li><strong>Regional Expansion:</strong> Extend $SHWE‑PAY services to additional Southeast Asian markets.</li>
+    </ul>
+  </div>
 
-        /* Tokenomics Table */
-        .token-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 215, 0, 0.2); margin-top: 50px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        th { color: var(--gold); }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <nav>
-            <div class="logo">$SHWE-PAY</div>
-            <a href="mailto:contact@shwe-pay.com" class="btn" style="padding: 10px 20px;">Contact Us</a>
-        </nav>
-
-        <section class="hero">
-            <h1>Empowering Myanmar's Financial Future</h1>
-            <p style="font-size: 1.2rem; max-width: 800px; margin: auto; color: #BBB;">
-                A secure, Solana-based payment solution with an asset-backed 30/40/30 reserve model. 
-                Fast, transparent, and decentralized.
-            </p>
-            <br>
-            <a href="#tokenomics" class="btn">Explore Tokenomics</a>
-        </section>
-
-        <section id="tokenomics" class="token-card">
-            <h2 style="color: var(--gold);">Tokenomics (1% Initial Launch)</h2>
-            <table>
-                <tr>
-                    <th>Category</th>
-                    <th>Allocation</th>
-                    <th>Tokens</th>
-                </tr>
-                <tr>
-                    <td>Total Supply</td>
-                    <td>100%</td>
-                    <td>1,000,000,000</td>
-                </tr>
-                <tr>
-                    <td>Seed Round (Allocated)</td>
-                    <td>1%</td>
-                    <td>10,000,000</td>
-                </tr>
-                <tr>
-                    <td>Liquidity Pool</td>
-                    <td>40%</td>
-                    <td>400,000,000</td>
-                </tr>
-                <tr>
-                    <td>Ecosystem & Grants</td>
-                    <td>59%</td>
-                    <td>590,000,000</td>
-                </tr>
-            </table>
-        </section>
-
-        <footer style="margin-top: 100px; padding: 50px 0; border-top: 1px solid var(--glass); text-align: center; color: #888;">
-            <p>© 2026 $SHWE-PAY, Inc. Registered in Delaware.</p>
-            <p>Built on <span style="color: var(--solana-green);">Solana</span></p>
-        </footer>
-    </div>
-
-</body>
-</html>
+</div>
